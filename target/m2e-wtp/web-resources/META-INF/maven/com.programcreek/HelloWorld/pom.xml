@@ -15,6 +15,12 @@
 		<jackson.library>2.3.3</jackson.library>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>angularjs</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -115,19 +121,19 @@
 	</dependencies>
 
 
-	
+
 	<build>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.6.1</version>
-            <configuration>
-                <source>1.8</source>
-                <target>1.8</target>
-            </configuration>
-        </plugin>
-    </plugins>
-    <finalName>HelloWorld</finalName>
-</build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+		<finalName>HelloWorld</finalName>
+	</build>
 </project>

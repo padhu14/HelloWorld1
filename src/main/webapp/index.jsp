@@ -14,7 +14,7 @@ pageEncoding="ISO-8859-1"%>
 		<h2>Hello World</h2>
 		<h3>
 		
-		<a href="/hello?name=dg">Click Here</a>
+		<a href="rest/hello?name=dg">Click Here</a>
 		</h3>
 	</center>
 </body>

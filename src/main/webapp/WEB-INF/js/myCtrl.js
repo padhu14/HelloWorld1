@@ -4,6 +4,7 @@ app1.controller('EmployeeCtrl', function($scope, $http) {
 		method : "GET",
 		url : "/HelloWorld/rest/employee/getAllEmployees"
 	}).then(function mySuccess(response) {
+		$scope.today = new Date();
 		$scope.allEmployees = response.data;
 	}, function myError(response) {
 		$scope.allEmployees = "Something went wrong";
@@ -39,12 +40,3 @@ app1.controller('EmployeeCtrl', function($scope, $http) {
 });
 
 
-app2.controller('validateCtrl', function($scope) {
-	$scope.user = 'John Doe';
-	$scope.email = 'john.doe@gmail.com';
-	$scope.reset = function() {
-		$scope.user = angular.copy($scope.user);
-		$scope.email = angular.copy($scope.email);
-	};
-	$scope.reset();
-});

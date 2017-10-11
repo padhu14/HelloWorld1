@@ -21,6 +21,12 @@ table tr:nth-child(odd) {
 table tr:nth-child(even) {
 	background-color: #ffffff;
 }
+input.ng-invalid {
+    background-color: pink;
+}
+input.ng-valid {
+    background-color: white;
+}
 </style>
 <script src="js/myApp.js"></script>
 <script src="js/myCtrl.js"></script>
@@ -48,6 +54,7 @@ table tr:nth-child(even) {
 		<p ng-show="true">I am visible.</p>
 
 		<p ng-show="false">I am not visible.</p>
+		<p>Date = {{ today | date : "dd.MM.y" }}</p>
 
 
 
@@ -56,52 +63,21 @@ table tr:nth-child(even) {
 		<h3 ng-disabled = "_id.$untouched">{{employee | json : 12}}</h3>
 		
 		<form name="insertvalue">
-		ID : <input type="text" ng-model="id" /><br>
-		First Name : <input type="text" ng-model="firstName" /><br>
-		Last Name : <input type="text" ng-model="lastName" /><br>
-		<button value="submit" ng-click="addEmployee(id,firstName,lastName)">Submit</button>
+		ID : <input type="text" ng-model="id" name="id" required/><br>
+		First Name : <input type="text" ng-model="firstName" name="firstName" required/><br>
+		Last Name : <input type="text" ng-model="lastName" name="lastName" required/><br>
+		<input type="submit" value="Submit" ng-click="addEmployee(id,firstName,lastName)" 
+		ng-disabled="insertvalue.id.$invalid ||
+		insertvalue.firstName.$invalid ||
+		 insertvalue.lastName.$invalid"/>
+		<span ng-show="insertvalue.$submitted">Form submitted successfully</span>
+		
 		</form>
 	</div>
 
 
-	<!-- <div ng-app="myApp" ng-controller="myCtrl">
-		<h1 ng-mousemove="count = count + 1" align="center">Mouse over
-			me!</h1>
 
-		<h2>{{ count }}</h2>
-
-	</div> -->
-
-	<!-- <h2>Validation Example</h2>
-
-	<form ng-app="myApp" ng-controller="validateCtrl" name="myForm"
-		novalidate>
-
-		<p>
-			Username:<br> <input type="text" name="user" ng-model="user"
-				required> <span style="color: red"
-				ng-show="myForm.user.$dirty && myForm.user.$invalid"> <span
-				ng-show="myForm.user.$error.required">Username is required.</span>
-			</span>
-		</p>
-
-		<p>
-			Email:<br> <input type="email" name="email" ng-model="email"
-				required> <span style="color: red"
-				ng-show="myForm.email.$dirty && myForm.email.$invalid"> <span
-				ng-show="myForm.email.$error.required">Email is required.</span> <span
-				ng-show="myForm.email.$error.email">Invalid email address.</span>
-			</span>
-		</p>
-
-		<p>
-			<input type="submit" ng-model="submit"
-				ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||
-  myForm.email.$dirty && myForm.email.$invalid">
-		</p>
-		<input type="button" value="Reset" ng-click="reset()"/>
-	<h3 ng-disabled="submit.$invalid">{{myForm.user}} - {{myForm.email}}</h3>
-	</form> -->
+	
 
 </body>
 </html>

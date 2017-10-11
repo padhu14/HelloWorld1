@@ -1,6 +1,14 @@
 package com.programcreek.helloworld.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Employee {
+	
+	@Id
+	@Indexed
 	private String id;
 	private String lastName;
 	private String firstName;

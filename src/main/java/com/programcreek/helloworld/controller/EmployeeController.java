@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.programcreek.helloworld.model.Employee;
 import com.programcreek.helloworld.service.EmployeeManager;
+import com.programcreek.helloworld.service.EmployeeManager1;
 
 @RestController
 @RequestMapping("/employee")
@@ -26,6 +28,9 @@ public class EmployeeController {
 	
 	@Autowired
 	private EmployeeManager employeeManager;
+	
+	@Autowired
+	private EmployeeManager1 empManager;
 
 	
 	@RequestMapping(value = "/getAllEmployees",method=RequestMethod.GET
@@ -47,11 +52,46 @@ public class EmployeeController {
 		
 	}
 	
-	@RequestMapping(value="searchEmployee/{identity}", method = RequestMethod.GET
+	@RequestMapping(value="/searchEmployee/{identity}", method = RequestMethod.GET
 			,headers="Accept=application/json")
 	public @ResponseBody ResponseEntity<Employee> findCustomerById(@PathVariable("identity") String id) {
 		Employee employee = employeeManager.searchEmployee(id);
 		LOG.info(employee.toString());
 		return new ResponseEntity<>(employee, HttpStatus.OK);
 	}
+	
+	
+	@RequestMapping(value="/employee",method=RequestMethod.POST
+			,headers="Accept=application/json")
+	public @ResponseBody ResponseEntity<Employee> createEmployee(@RequestBody(required=false) Employee employee){
+		LOG.info(employee.toString());
+		empManager.create(employee);
+		return new ResponseEntity<>(employee, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/findEmployee/{identity}", method = RequestMethod.GET
+			,headers="Accept=application/json")
+	public @ResponseBody ResponseEntity<Employee> findEmployeeById(@PathVariable("identity") String id) {
+		Employee employee = empManager.readById(id);
+		LOG.info(employee.toString());
+		return new ResponseEntity<>(employee, HttpStatus.OK);
+	}
+	
+
+	@RequestMapping(value="/employee",method=RequestMethod.PUT
+			,headers="Accept=application/json")
+	public @ResponseBody ResponseEntity<Employee> updateEmployee(@RequestBody(required=false) Employee employee){
+		LOG.info(employee.toString());
+		empManager.update(employee);
+		return new ResponseEntity<>(employee, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/employee",method=RequestMethod.DELETE
+			,headers="Accept=application/json")
+	public @ResponseBody ResponseEntity<Employee> deleteEmployee(@RequestParam(required=false) String id){
+		
+		empManager.deleteById(id);
+		return new ResponseEntity<>(null, HttpStatus.OK);
+	}
+	
 }

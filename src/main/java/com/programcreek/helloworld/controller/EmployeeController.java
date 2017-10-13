@@ -41,14 +41,13 @@ public class EmployeeController {
 		return new ResponseEntity<>(this.employeeManager.getEmployeeList(),HttpStatus.OK);
 		
 	}
-	@RequestMapping(value = "/addEmployee",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE
-			,consumes=MediaType.APPLICATION_JSON_VALUE
-			,headers = "Accept=application/json")
-	public @ResponseBody ResponseEntity<List<Employee>> addEmployee(@RequestBody(required=false) Employee employee) throws Exception {
+	@RequestMapping(value = "/addEmployee",method=RequestMethod.POST,
+			headers = "Accept=application/json")
+	public @ResponseBody List<Employee> addEmployee(@RequestBody Employee employee) throws Exception {
 		LOG.info(employee.toString());
 		employeeManager.addEmployees(employee);
 		System.out.println("Employee Added Successfully");
-		return new ResponseEntity<>(this.employeeManager.getEmployeeList(),HttpStatus.OK);
+		return (this.employeeManager.getEmployeeList());
 		
 	}
 	
@@ -92,6 +91,14 @@ public class EmployeeController {
 		
 		empManager.deleteById(id);
 		return new ResponseEntity<>(null, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/searchEmployeeName/{name}", method = RequestMethod.GET
+			,headers="Accept=application/json")
+	public @ResponseBody ResponseEntity<List<Employee>> findEmployeeByName(@PathVariable("name") String name) {
+		List<Employee> employees = empManager.findByName(name);
+		LOG.info(employees.toString());
+		return new ResponseEntity<>(employees, HttpStatus.OK);
 	}
 	
 }

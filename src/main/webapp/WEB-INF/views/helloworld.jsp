@@ -7,6 +7,7 @@
 <title>Spring 4 MVC -HelloWorld</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	
 <style>
 table, th, td {
 	border: 1px solid grey;

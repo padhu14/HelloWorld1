@@ -19,7 +19,7 @@ http://www.springframework.org/schema/mvc
 	<mvc:annotation-driven />
 	<mvc:annotation-driven
 		content-negotiation-manager="contentNegotiationManagers" />
-
+	<mvc:resources location="/WEB-INF/views/" mapping="/views/**"  />
 	<mvc:resources location="/WEB-INF/js/" mapping="/js/**" />
 	<mvc:resources location="/WEB-INF/images/" mapping="/images/**" />
 	<mvc:resources location="/WEB-INF/css/" mapping="/css/**" />
@@ -53,7 +53,8 @@ http://www.springframework.org/schema/mvc
 	<mongo:mongo host="127.0.0.1" port="27017" id="mongo" />
 
 	<!-- Mongo DB Factory -->
-	<mongo:db-factory dbname="TestDB" mongo-ref="mongo" id="mongoDbFactory" />
+	<mongo:db-factory dbname="TestDB" mongo-ref="mongo"
+		id="mongoDbFactory" />
 
 	<!-- Mongo Template -->
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">

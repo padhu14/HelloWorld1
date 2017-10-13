@@ -1,5 +1,7 @@
 package com.programcreek.helloworld.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +13,13 @@ public class EmployeeManagerImpl implements EmployeeManager1 {
 	
 	@Autowired
 	private EmployeeDAO employeeDAO;
-
+	
+	@Autowired
+	private CounterService counterService; 
+	
 	@Override
 	public void create(Employee e) {
+		e.setId(String.valueOf(counterService.getNextSequence("Employee")));
 		employeeDAO.create(e);
 	}
 
@@ -31,6 +37,11 @@ public class EmployeeManagerImpl implements EmployeeManager1 {
 	@Override
 	public int deleteById(String id) {
 		return employeeDAO.deleteById(id);
+	}
+
+	@Override
+	public List<Employee> findByName(String name) {
+		return employeeDAO.findByKey(name);
 	}
 
 }

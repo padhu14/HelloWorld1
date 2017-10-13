@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.mongodb.WriteResult;
+import com.mongodb.client.result.DeleteResult;
 import com.programcreek.helloworld.model.Employee;
 
 @Repository("employeeDAO")
@@ -19,10 +20,6 @@ public class EmployeeDAOimpl implements EmployeeDAO {
 	private MongoOperations mongoOps;
 	
 	private static final String EMPLOYEE_COLLECTION = "Employee";
-	
-	/*public EmployeeDAOimpl(MongoOperations mongoOps){
-		this.mongoOps = mongoOps;
-	}*/
 	
 	@Override
 	public void create(Employee e) {
@@ -46,14 +43,14 @@ public class EmployeeDAOimpl implements EmployeeDAO {
 	public int deleteById(String id) {
 		Query query = new Query(Criteria.where("_id").is(id));
 		WriteResult result = this.mongoOps.remove(query, Employee.class, EMPLOYEE_COLLECTION);
-		Employee emp = (Employee) result.getUpsertedId();
-		return result.getN();
+		return (int) 0;
 	}
 	
 	public void setMongoOps(MongoOperations mongoOps) {
         this.mongoOps = mongoOps;
     }
 	
+	@Override
 	public List<Employee> findByKey(String key) {
 		Query query = new Query(Criteria.where("firstName").is(key));
         return mongoOps.find(query, Employee.class);

@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.programcreek.helloworld.service.CounterService;
 
 @Document(collection="Employee")
 @JsonFormat

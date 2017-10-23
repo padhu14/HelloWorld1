@@ -24,7 +24,7 @@ public class EmployeeManagerImpl implements EmployeeManager1 {
 	}
 
 	@Override
-	public Employee readById(String id) {
+	public Employee readById(Long id) {
 		return employeeDAO.readById(id);
 	}
 
@@ -42,6 +42,11 @@ public class EmployeeManagerImpl implements EmployeeManager1 {
 	@Override
 	public List<Employee> findByName(String name) {
 		return employeeDAO.findByKey(name);
+	}
+
+	@Override
+	public List<Employee> getAllEmployees() {
+		return employeeDAO.getAllEmployees();
 	}
 
 }

@@ -7,11 +7,13 @@ import com.programcreek.helloworld.model.Employee;
 public interface EmployeeManager1 {
 	public void create(Employee e);
 
-	public Employee readById(String id);
+	public Employee readById(Long id);
 
 	public void update(Employee e);
 
 	public int deleteById(String id);
 	
 	public List<Employee> findByName(String name);
+	
+	public List<Employee> getAllEmployees();
 }

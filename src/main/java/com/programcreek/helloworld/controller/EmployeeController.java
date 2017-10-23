@@ -70,7 +70,7 @@ public class EmployeeController {
 	
 	@RequestMapping(value="/findEmployee/{identity}", method = RequestMethod.GET
 			,headers="Accept=application/json")
-	public @ResponseBody ResponseEntity<Employee> findEmployeeById(@PathVariable("identity") String id) {
+	public @ResponseBody ResponseEntity<Employee> findEmployeeById(@PathVariable("identity") Long id) {
 		Employee employee = empManager.readById(id);
 		LOG.info(employee.toString());
 		return new ResponseEntity<>(employee, HttpStatus.OK);
@@ -98,6 +98,14 @@ public class EmployeeController {
 	public @ResponseBody ResponseEntity<List<Employee>> findEmployeeByName(@PathVariable("name") String name) {
 		List<Employee> employees = empManager.findByName(name);
 		LOG.info(employees.toString());
+		return new ResponseEntity<>(employees, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/getAllEmployeesfromDB", method = RequestMethod.GET
+			,headers="Accept=application/json")
+	public @ResponseBody ResponseEntity<List<Employee>> getAllEmployeesfromDB() {
+		List<Employee> employees = empManager.getAllEmployees();
+		
 		return new ResponseEntity<>(employees, HttpStatus.OK);
 	}
 	

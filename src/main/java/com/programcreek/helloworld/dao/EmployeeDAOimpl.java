@@ -28,8 +28,8 @@ public class EmployeeDAOimpl implements EmployeeDAO {
 	}
 
 	@Override
-	public Employee readById(String id) {
-		Query query = new Query(Criteria.where("_id").is(id));
+	public Employee readById(Long id) {
+		Query query = new Query(Criteria.where("_id").is(id.toString()));
 		return this.mongoOps.findOne(query, Employee.class, EMPLOYEE_COLLECTION);
 	}
 
@@ -55,4 +55,9 @@ public class EmployeeDAOimpl implements EmployeeDAO {
 		Query query = new Query(Criteria.where("firstName").is(key));
         return mongoOps.find(query, Employee.class);
     }
+	
+	@Override
+	public List<Employee> getAllEmployees(){
+		return mongoOps.findAll(Employee.class);
+	}
 }

@@ -21,5 +21,13 @@ public class HelloWorldController {
 		mv.addObject("name", name);
 		return mv;
 	}
+	
+	@RequestMapping("/employeePortal")
+	public ModelAndView employeePortal() {
+		System.out.println("in controller");
+
+		ModelAndView mv = new ModelAndView("employee");
+		return mv;
+	}
 
 }

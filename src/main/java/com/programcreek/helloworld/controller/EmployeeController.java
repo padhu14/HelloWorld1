@@ -87,10 +87,10 @@ public class EmployeeController {
 	
 	@RequestMapping(value="/employee",method=RequestMethod.DELETE
 			,headers="Accept=application/json")
-	public @ResponseBody ResponseEntity<Employee> deleteEmployee(@RequestParam(required=false) String id){
+	public @ResponseBody ResponseEntity<List<Employee>> deleteEmployee(@RequestParam(value = "id") String id){
 		
 		empManager.deleteById(id);
-		return new ResponseEntity<>(null, HttpStatus.OK);
+		return new ResponseEntity<>(empManager.getAllEmployees(),HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/searchEmployeeName/{name}", method = RequestMethod.GET

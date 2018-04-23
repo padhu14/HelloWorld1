@@ -1,7 +1,7 @@
 angular.module('employeePortal', []).controller(
 		'employeeController',
 		function($scope, $http) {
-			$http({
+			$scope.init =function() { $http({
 					method : "GET",
 					url : "/HelloWorld/rest/employee/getAllEmployeesfromDB"
 			}).then(function mySuccess(response) {
@@ -9,6 +9,7 @@ angular.module('employeePortal', []).controller(
 			}, function myError(response) {
 				$scope.allEmployees = "Sorry, cannot fetch Something went wrong";
 			});
+			}
 			$scope.addEmployee = function(emp) {
 				var empdata = {
 					lastName : (emp.lastName == null) ? " " : emp.lastName,
@@ -24,7 +25,7 @@ angular.module('employeePortal', []).controller(
 					url : "/HelloWorld/rest/employee/employee",
 					data : JSON.stringify(empdata)
 				}).then(function mySuccess(response) {
-					$scope.employee1 = response.data;
+					$scope.allEmployees.push(response.data);
 				}, function myError(response) {
 					$scope.employee1 = "Sorry, Something went wrong";
 				});
@@ -40,6 +41,17 @@ angular.module('employeePortal', []).controller(
 									+ $scope.identity,
 						}).then(function mySuccess(response) {
 					$scope.employee2 = response.data;
+				}, function myError(response) {
+					$scope.employee2 = "Sorry, Something went wrong";
+				});
+			}
+			$scope.deletePeople =  function(id) {
+				$http(
+						{
+							method : "DELETE",
+							url : "/HelloWorld/rest/employee/employee?id="+id,
+						}).then(function mySuccess(response) {
+							$scope.allEmployees = response.data;
 				}, function myError(response) {
 					$scope.employee2 = "Sorry, Something went wrong";
 				});

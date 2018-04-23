@@ -64,7 +64,7 @@ input.ng-valid {
 		<h3 ng-disabled = "_id.$untouched">{{employee | json : 12}}</h3>
 		
 		<form name="insertvalue">
-		ID : <input type="text" ng-model="id" name="id" required/><br>
+		<!-- ID : <input type="text" ng-model="id" name="id" required/><br> -->
 		First Name : <input type="text" ng-model="firstName" name="firstName" required/><br>
 		Last Name : <input type="text" ng-model="lastName" name="lastName" required/><br>
 		<input type="submit" value="Submit" ng-click="addEmployee(id,firstName,lastName)" 

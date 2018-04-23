@@ -42,8 +42,8 @@ public class EmployeeDAOimpl implements EmployeeDAO {
 	@Override
 	public int deleteById(String id) {
 		Query query = new Query(Criteria.where("_id").is(id));
-		WriteResult result = this.mongoOps.remove(query, Employee.class, EMPLOYEE_COLLECTION);
-		return (int) 0;
+		 this.mongoOps.remove(query, Employee.class, EMPLOYEE_COLLECTION);
+		return  0;
 	}
 	
 	public void setMongoOps(MongoOperations mongoOps) {

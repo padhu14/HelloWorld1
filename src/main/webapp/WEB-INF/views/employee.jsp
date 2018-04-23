@@ -94,7 +94,7 @@
 					<th>EmailId</th>
 					<th>Delete</th>
 				</tr>
-				<tr ng-repeat="empObj in allEmployees">
+				<tr class=hide ng-repeat="empObj in allEmployees">
 					<!-- <td>{{empObj.id}}</td> -->
 					<td>{{empObj.firstName}}</td>
 					<td>{{empObj.lastName}}</td>

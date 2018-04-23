@@ -109,4 +109,12 @@ public class EmployeeController {
 		return new ResponseEntity<>(employees, HttpStatus.OK);
 	}
 	
+	// Not implemented in UI
+	@RequestMapping(value="/resetDBCounter/{dbIdReset}", method = RequestMethod.GET
+			,headers="Accept=application/json")
+	public @ResponseBody ResponseEntity<Boolean> resetDBCounter(@PathVariable("dbIdReset") String dbIdReset) {
+		empManager.resetCounter(dbIdReset);
+		
+		return new ResponseEntity<>(true, HttpStatus.OK);
+	}
 }

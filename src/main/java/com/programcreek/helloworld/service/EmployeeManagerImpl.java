@@ -48,5 +48,10 @@ public class EmployeeManagerImpl implements EmployeeManager1 {
 	public List<Employee> getAllEmployees() {
 		return employeeDAO.getAllEmployees();
 	}
+	
+	@Override
+	public void resetCounter(String dbIdReset) {
+		employeeDAO.resetCounter(dbIdReset);
+	}
 
 }

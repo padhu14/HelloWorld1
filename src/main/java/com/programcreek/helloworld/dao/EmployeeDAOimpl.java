@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mongodb.WriteResult;
 import com.mongodb.client.result.DeleteResult;
+import com.programcreek.helloworld.model.Counter;
 import com.programcreek.helloworld.model.Employee;
 
 @Repository("employeeDAO")
@@ -59,5 +60,14 @@ public class EmployeeDAOimpl implements EmployeeDAO {
 	@Override
 	public List<Employee> getAllEmployees(){
 		return mongoOps.findAll(Employee.class);
+	}
+	
+	@Override
+	public void resetCounter(String dbIdReset) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("_id").is(dbIdReset));
+		Counter counter = mongoOps.findOne(query, Counter.class);
+		counter.setSeq(0);
+		mongoOps.save(counter);
 	}
 }

@@ -16,4 +16,6 @@ public interface EmployeeDAO {
 	public List<Employee> findByKey(String key);
 
 	public List<Employee> getAllEmployees();
+
+	public void resetCounter(String dbIdReset);
 }

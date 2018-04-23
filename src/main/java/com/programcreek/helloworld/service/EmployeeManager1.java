@@ -16,4 +16,6 @@ public interface EmployeeManager1 {
 	public List<Employee> findByName(String name);
 	
 	public List<Employee> getAllEmployees();
+
+	public void resetCounter(String dbIdReset);
 }
